@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>MC PC Demo</title>
+<title>MC Demo</title>
 <style>
 body { margin:0; overflow:hidden; }
 canvas { display:block; }
@@ -15,26 +15,21 @@ background:rgba(0,0,0,0.6);
 padding:8px;
 border-radius:8px;
 font-family:Arial;
-z-index:10;
 }
 </style>
 </head>
 <body>
 <div id="info">WASD ile hareket</div>
 
-<script type="module">
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.152/build/three.module.js";
-import { PointerLockControls } from "https://cdn.jsdelivr.net/npm/three@0.152/examples/jsm/controls/PointerLockControls.js";
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+<script>
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87ceeb);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-camera.position.y = 2;
+camera.position.set(0,2,5);
 
-const renderer = new THREE.WebGLRenderer({antialias:true});
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-// Işık
-const light = new THRE
+do
