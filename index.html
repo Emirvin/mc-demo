@@ -2,84 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Block PC Demo</title>
-<style>
-body { margin: 0; overflow: hidden; }
-#info {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-family: Arial;
-}
-</style>
+<title>Test</title>
 </head>
-<body>
+<body style="margin:0;background:black;color:white;display:flex;align-items:center;justify-content:center;height:100vh;">
 
-<div id="info">Tıkla → WASD ile hareket</div>
+<h1 id="text">JS Çalışıyor...</h1>
 
-<script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.module.js';
-import { PointerLockControls } from 'https://cdn.jsdelivr.net/npm/three@0.155.0/examples/jsm/controls/PointerLockControls.js';
-
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x87ceeb);
-
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-
-const renderer = new THREE.WebGLRenderer({ antialias:true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-const light = new THREE.HemisphereLight(0xffffff, 0x444444);
-scene.add(light);
-
-const controls = new PointerLockControls(camera, document.body);
-document.body.addEventListener("click", () => controls.lock());
-
-camera.position.set(0, 2, 5);
-
-// Zemin
-const geometry = new THREE.BoxGeometry(1,1,1);
-const groundMat = new THREE.MeshLambertMaterial({color:0x55aa55});
-
-for(let x=-10;x<10;x++){
-  for(let z=-10;z<10;z++){
-    const cube = new THREE.Mesh(geometry, groundMat);
-    cube.position.set(x,-1,z);
-    scene.add(cube);
-  }
-}
-
-// Hareket
-const keys = {};
-document.addEventListener("keydown", e => keys[e.key.toLowerCase()] = true);
-document.addEventListener("keyup", e => keys[e.key.toLowerCase()] = false);
-
-function move(){
-  const speed = 0.1;
-  if(keys["w"]) controls.moveForward(speed);
-  if(keys["s"]) controls.moveForward(-speed);
-  if(keys["a"]) controls.moveRight(-speed);
-  if(keys["d"]) controls.moveRight(speed);
-}
-
-function animate(){
-  requestAnimationFrame(animate);
-  move();
-  renderer.render(scene,camera);
-}
-
-animate();
-
-window.addEventListener("resize", ()=>{
-  camera.aspect = window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
+<script>
+document.getElementById("text").innerText = "JavaScript ÇALIŞTI 🔥";
 </script>
 
 </body>
